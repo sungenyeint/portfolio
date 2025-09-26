@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa'
 
 interface ProjectProps {
@@ -13,9 +14,11 @@ const Project = ({ title, description, technologies, image, onViewDetails }: Pro
         <div className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col overflow-hidden group">
             {/* Project Image */}
             <div className="h-44 w-full overflow-hidden">
-                <img
+                <Image
                     src={`/projects/${image}`}
                     alt={title}
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
             </div>

@@ -41,10 +41,10 @@ export default function About() {
                         About <span className="text-blue-600 dark:text-blue-400">Me</span>
                     </h2>
                     <p className="mb-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        I'm a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Senior Web Developer</span> with extensive experience building scalable, maintainable, and high-performance web applications that deliver exceptional user experiences.
+                        I&apos;m a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Senior Web Developer</span> with extensive experience building scalable, maintainable, and high-performance web applications that deliver exceptional user experiences.
                     </p>
                     <p className="mb-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Over the past years, I've led development teams and collaborated with cross-functional partners to create innovative digital solutions that drive business growth and user engagement.
+                        Over the past years, I&apos;ve led development teams and collaborated with cross-functional partners to create innovative digital solutions that drive business growth and user engagement.
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <Link

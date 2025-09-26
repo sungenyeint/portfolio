@@ -21,7 +21,12 @@ const skills = [
     { icon: <SiGit className="text-5xl text-orange-500 mb-2" />, label: "Git" },
 ];
 
-function chunkArray(array: any[], size: number) {
+type skill = {
+    icon: React.ReactNode;
+    label: string;
+};
+
+function chunkArray(array: skill[], size: number) {
     const result = [];
     for (let i = 0; i < array.length; i += size) {
         result.push(array.slice(i, i + size));

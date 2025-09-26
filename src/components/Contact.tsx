@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaLocationArrow, FaMailBulk, FaMailchimp, FaPhone } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaLocationArrow, FaMailBulk, FaPhone } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -48,6 +48,7 @@ export default function Contact() {
             }
         } catch (error) {
             setStatus("error");
+            console.error("Error submitting form:", error);
         }
         setLoading(false);
     };
