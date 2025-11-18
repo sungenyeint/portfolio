@@ -26,7 +26,7 @@ export default function HeroSection() {
             </div>
 
             <Image
-                src="/profile.jpg"
+                src="/profile.png"
                 alt="Duncan"
                 width={300}
                 height={400}

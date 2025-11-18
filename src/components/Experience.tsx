@@ -96,9 +96,6 @@ export default function Experience() {
                                 <p className="text-gray-700 dark:text-gray-100">
                                     Technological University, Taunggyi | Graduated: 2016
                                 </p>
-                                <p className="mt-2 text-gray-700 dark:text-gray-100">
-                                    Specialized in digital communication systems and network protocols
-                                </p>
                             </div>
                         </div>
                     </div>

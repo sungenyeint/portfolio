@@ -7,7 +7,7 @@ import PreloaderWrapper from "./PreloaderWrapper";
 
 export const metadata: Metadata = {
     title: "Portfolio",
-    description: "Portfolio",
+    description: "SuNgeNyeint - Portfolio",
 };
 
 export default function RootLayout({

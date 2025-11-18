@@ -28,7 +28,7 @@ export default function About() {
                 <div className="md:w-1/3 flex justify-center">
                     <div className="relative">
                         <Image
-                            src="/profile.jpg"
+                            src="/profile.png"
                             alt="Profile"
                             width={200}
                             height={200}
@@ -48,7 +48,7 @@ export default function About() {
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <Link
-                            href="https://drive.google.com/file/d/1f2D4hW46HMlCICv9u5i7JXzR4vkeLkva/view"
+                            href="https://drive.google.com/file/d/1NKpcNXv_XT4Zx5eu8JPVThP2tND2FDgy/view"
                             target="_blank"
                             className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition flex items-center gap-2"
                         >
