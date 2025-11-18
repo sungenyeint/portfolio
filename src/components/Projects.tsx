@@ -89,13 +89,15 @@ const fadeUp = {
 interface Project {
   title: string;
   description: string;
+  detail: string;
   technologies: string[];
   image: string;
+  link: string;
 }
 
 export default function Projects() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
