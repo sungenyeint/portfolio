@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const PROJECTS = [
   {
@@ -26,7 +26,8 @@ const PROJECTS = [
   {
     title: "(POS) System for Baby Store",
     description: "Retail management for baby stores.",
-    detail: "The Baby Store POS system is a comprehensive solution designed to streamline sales, inventory management, and purchase tracking specifically tailored for baby product retail businesses. This system provides an intuitive interface and advanced reporting tools to help store owners efficiently manage daily operations and make informed business decisions.",
+    detail:
+      "The Baby Store POS system is a comprehensive solution designed to streamline sales, inventory management, and purchase tracking specifically tailored for baby product retail businesses. This system provides an intuitive interface and advanced reporting tools to help store owners efficiently manage daily operations and make informed business decisions.",
     technologies: ["PHP", "Laravel", "MySQL", "Bootstrap"],
     image: "pos-system.png",
     link: "#",
@@ -96,6 +97,14 @@ interface Project {
 }
 
 export default function Projects() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, y: 0 });
+    }
+  }, [inView, controls]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -111,10 +120,12 @@ export default function Projects() {
 
   return (
     <motion.section
-      className="flex flex-col md:flex-row items-center justify-center w-full"
-      initial={{ opacity: 0.3, y: 60 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.5, ease: "easeOut" }}
+      id="projects"
+      className="py-20"
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
+      animate={controls}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
