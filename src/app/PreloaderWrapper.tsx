@@ -44,7 +44,7 @@ const PreloaderWrapper = ({ children }: { children: React.ReactNode }) => {
         return (
             <div className={`fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-500 ${fade ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <span className="text-5xl font-bold text-black mb-6">&lt; /&gt;</span>
-                <span className="text-xl md:text-2xl font-mono text-gray-500 tracking-wide">
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-mono text-gray-500 tracking-wide text-center break-words max-w-full">
                     {typed}
                     <span className="inline-block w-2" style={{ opacity: showCursor ? 1 : 0 }}>|</span>
                 </span>

@@ -101,7 +101,7 @@ export default function Nav() {
             </nav>
             {/* Mobile Nav */}
             <nav className="fixed top-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-700 rounded-full px-6 py-1 flex items-center z-50 md:hidden">
-                <Image src="/profile.jpg" alt="profile" width={36} height={36} className="rounded-full mr-5" />
+                <Image src="/profile.png" alt="profile" width={36} height={36} className="rounded-full mr-5" />
                 <button
                     className="ml-3 text-gray-700 dark:text-gray-200 focus:outline-none"
                     aria-label="Open menu"
