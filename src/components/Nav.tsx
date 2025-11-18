@@ -127,7 +127,7 @@ export default function Nav() {
                     >
                         <FaTimes />
                     </button>
-                    <Image src="/profile.jpg" alt="profile" width={64} height={64} className="rounded-full mb-6 border-4 border-white dark:border-black shadow" />
+                    <Image src="/profile.png" alt="profile" width={64} height={64} className="rounded-full mb-6 border-4 border-white dark:border-black shadow" />
                     <ul className="flex flex-col gap-8 text-center">
                         {sections.map((section) => (
                             <li key={section.id}>

@@ -62,7 +62,7 @@ const PROJECTS = [
       "firebase",
       "vercel",
     ],
-    image: "big-five.png",
+    image: "big-five-app.png",
     link: "https://big-five-personality-traits.vercel.app/",
   },
   {
@@ -77,7 +77,7 @@ const PROJECTS = [
       "Firebase authentication",
       "vercel",
     ],
-    image: "money-tracker.png",
+    image: "money-tracker-app.png",
     link: "https://nuxt-money-tracker.vercel.app/",
   },
 ];
