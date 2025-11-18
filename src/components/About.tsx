@@ -48,7 +48,7 @@ export default function About() {
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <Link
-                            href="https://drive.google.com/file/d/1NKpcNXv_XT4Zx5eu8JPVThP2tND2FDgy/view"
+                            href="https://drive.google.com/file/d/1Pbattn2nAHr9YLoP5rOaWz7tW6EWjfh7/view"
                             target="_blank"
                             className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition flex items-center gap-2"
                         >
