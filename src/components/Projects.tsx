@@ -71,14 +71,52 @@ const PROJECTS = [
     detail:
       "The Nuxt Money Tracker is a modern and responsive finance management app that helps users track and visualize their daily income and expenses. 🔎 Key Features: 📊 Interactive charts to analyze financial trends 🗂 Categorized transaction tracking with clean UI 💰 Budget overview and spending insights 📁 Multiple wallets support (cash, bank, card) 📱 Fully responsive and lightweight design",
     technologies: [
-      "React.js",
-      "Next.js",
+      "vue.js",
+      "Nuxt.js",
       "Tailwind CSS",
       "Firebase authentication",
       "vercel",
+      "express.js",
+      "MongoDB",
     ],
     image: "money-tracker-app.png",
     link: "https://nuxt-money-tracker.vercel.app/",
+  },
+  {
+    title: "Restaurant POS System",
+    description: "Manage orders and inventory efficiently",
+    detail:
+      "The Restaurant POS System is a comprehensive solution designed to streamline order management, inventory tracking, and sales reporting for restaurants. This system provides an intuitive interface for staff to take orders, process payments, and manage tables, while also offering robust backend features for inventory control and analytics.",
+    technologies: [
+      "vue.js",
+      "Nuxt.js",
+      "Tailwind CSS",
+      "vercel",
+      "express.js",
+      "MongoDB",
+      "WebSocket",
+      "jwt",
+    ],
+    image: "restaurant-pos.png",
+    link: "https://nuxt-restaurant-system.vercel.app",
+  },
+  {
+    title: "Chat Room App",
+    description: "Real-time communication platform",
+    detail:
+      "The Chat Room App is a real-time messaging platform that allows users to create and join chat rooms for seamless communication. Built with modern web technologies, this app provides a user-friendly interface and robust features to enhance the chatting experience.",
+    technologies: [
+      "vue.js",
+      "Nuxt.js",
+      "Tailwind CSS",
+      "vercel",
+      "express.js",
+      "MongoDB",
+      "WebSocket",
+      "jwt",
+    ],
+    image: "chat-room.png",
+    link: "https://nuxt-chat-app-three.vercel.app",
   },
 ];
 
