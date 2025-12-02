@@ -27,9 +27,9 @@ export default function HeroSection() {
 
             <Image
                 src="/profile.png"
-                alt="Duncan"
-                width={300}
-                height={400}
+                alt="Mee Pont"
+                width={250}
+                height={300}
                 className="rounded-xl my-10 md:my-0"
             />
 

@@ -145,6 +145,9 @@ export default function Projects() {
   }, [inView, controls]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, 3);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
@@ -185,7 +188,7 @@ export default function Projects() {
 
         {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {PROJECTS.map((project, idx) => (
+          {visibleProjects.map((project, idx) => (
             <motion.div
               key={idx}
               variants={fadeUp}
@@ -193,8 +196,10 @@ export default function Projects() {
               whileInView="show"
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4
-                                       hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className={
+                `group card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4
+                                       hover:shadow-lg hover:-translate-y-1 transition-all duration-300`
+              }
             >
               {/* Image */}
               <Image
@@ -240,6 +245,19 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        {/* Show more / Show less */}
+        {PROJECTS.length > 3 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowAll((s) => !s)}
+              className="btn-primary"
+              aria-expanded={showAll}
+            >
+              {showAll ? "Show less" : `Show more (${PROJECTS.length - 3})`}
+            </button>
+          </div>
+        )}
       </div>
       {/* Glassmorphism Modal */}
       {modalOpen && selectedProject && (

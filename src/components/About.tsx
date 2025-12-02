@@ -28,10 +28,10 @@ export default function About() {
                 <div className="md:w-1/3 flex justify-center">
                     <div className="relative">
                         <Image
-                            src="/profile.png"
-                            alt="Profile"
-                            width={200}
-                            height={200}
+                            src="/avator.png"
+                            alt="Avator"
+                            width={250}
+                            height={300}
                             className="rounded-2xl object-cover shadow-xl transition-transform duration-300"
                         />
                     </div>

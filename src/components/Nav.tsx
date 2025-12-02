@@ -78,8 +78,8 @@ export default function Nav() {
     return (
         <>
             {/* Desktop Nav */}
-            <nav className="fixed top-5 md:top-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-700 rounded-full px-6 py-1 items-center space-x-6 z-50 hidden md:flex">
-                <Image src="/profile.png" alt="profile" width={40} height={40} className="rounded-full" />
+            <nav className="fixed top-5 md:top-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-700 rounded-full px-6 py-2 items-center space-x-6 z-50 hidden md:flex">
+                {/* <Image src="/profile.png" alt="profile" width={40} height={40} className="rounded-full" /> */}
                 {sections.map((section) => (
                     <Link
                         key={section.id}
