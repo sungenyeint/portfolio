@@ -1,7 +1,7 @@
 "use client";
 
-import { FaPhp, FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiNextdotjs, SiJavascript, SiTypescript, SiHtml5, SiCss3, SiMongodb, SiMysql, SiGit } from "react-icons/si";
+import { FaPhp, FaDocker, FaNodeJs, FaReact, FaVuejs, FaAws } from "react-icons/fa";
+import { SiNextdotjs, SiJavascript, SiTypescript, SiHtml5, SiCss3, SiMongodb, SiMysql, SiGit, SiNuxtdotjs } from "react-icons/si";
 import { motion, useAnimation } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { useInView } from "framer-motion";
@@ -12,6 +12,8 @@ const skills = [
     { icon: <FaNodeJs className="text-5xl text-green-600 mb-2" />, label: "Node.js" },
     { icon: <FaReact className="text-5xl text-cyan-500 mb-2" />, label: "React" },
     { icon: <SiNextdotjs className="text-5xl text-black mb-2" />, label: "Next.js" },
+    { icon: <FaVuejs className="text-5xl text-green-500 mb-2" />, label: "Vue" },
+    { icon: <SiNuxtdotjs className="text-5xl text-green-500 mb-2" />, label: "Nuxt.js" },
     { icon: <SiJavascript className="text-5xl text-yellow-400 mb-2" />, label: "JavaScript" },
     { icon: <SiTypescript className="text-5xl text-blue-600 mb-2" />, label: "TypeScript" },
     { icon: <SiHtml5 className="text-5xl text-orange-600 mb-2" />, label: "HTML5" },
@@ -19,6 +21,7 @@ const skills = [
     { icon: <SiMongodb className="text-5xl text-green-700 mb-2" />, label: "MongoDB" },
     { icon: <SiMysql className="text-5xl text-blue-800 mb-2" />, label: "MySQL" },
     { icon: <SiGit className="text-5xl text-orange-500 mb-2" />, label: "Git" },
+    { icon: <FaAws className="text-5xl text-black mb-2" />, label: "AWS" },
 ];
 
 type skill = {
@@ -35,7 +38,7 @@ function chunkArray(array: skill[], size: number) {
 }
 
 export default function Skill() {
-    const columns = 6;
+    const columns = 8;
     const rows = chunkArray(skills, columns);
 
     const ref = useRef(null);
@@ -81,7 +84,7 @@ export default function Skill() {
                                     style={{ minWidth: '200%' }}
                                 >
                                     {marqueeRow.map((skill, i) => (
-                                        <div className="flex flex-col items-center w-1/4" key={i}>
+                                        <div className="flex flex-col items-center w-1/6 px-2" key={i}>
                                             {skill.icon}
                                             <span className="font-semibold text-gray-700 dark:text-gray-100">{skill.label}</span>
                                         </div>

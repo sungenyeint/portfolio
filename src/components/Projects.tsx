@@ -5,32 +5,32 @@ import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const PROJECTS = [
-  {
-    title: "Tic Tac Toe Game",
-    description: "Interactive digital version of the classic game.",
-    detail:
-      "Project description. The Tic Tac Toe game project is a simple and interactive application designed to recreate the classic two-player game in a digital format. The project aims to provide an engaging and fun user experience while demonstrating core programming concepts, logic development, and UI design.",
-    technologies: ["React.js", "Next.js"],
-    image: "tic-tac-toe.png",
-    link: "https://tic-tac-toe-sage-gamma-74.vercel.app",
-  },
-  {
-    title: "Chat App",
-    description: "Guest App Walkthrough Screens.",
-    detail:
-      'Real-Time Messaging: Users can exchange messages instantly without refreshing the page. Event-Based Communication: Events such as "user joined," "message sent," and "user disconnected" keep all participants updated in real-time. Rooms/Channels: Supports creating private or public chat rooms for group discussions. Typing Indicators: Displays when a user is typing to enhance interactivity. Scalability: Built on WebSocket technology with fallback to HTTP long polling, ensuring compatibility across various devices and networks.',
-    technologies: ["Node.js", "WebSocket", "Express.js", "render"],
-    image: "chat-app.png",
-    link: "https://chat-app-c6tq.onrender.com/",
-  },
+  // {
+  //   title: "Tic Tac Toe Game",
+  //   description: "Interactive digital version of the classic game.",
+  //   detail:
+  //     "Project description. The Tic Tac Toe game project is a simple and interactive application designed to recreate the classic two-player game in a digital format. The project aims to provide an engaging and fun user experience while demonstrating core programming concepts, logic development, and UI design.",
+  //   technologies: ["React.js", "Next.js"],
+  //   images: "tic-tac-toe.png",
+  //   link: "https://tic-tac-toe-sage-gamma-74.vercel.app",
+  // },
+  // {
+  //   title: "Chat App",
+  //   description: "Guest App Walkthrough Screens.",
+  //   detail:
+  //     'Real-Time Messaging: Users can exchange messages instantly without refreshing the page. Event-Based Communication: Events such as "user joined," "message sent," and "user disconnected" keep all participants updated in real-time. Rooms/Channels: Supports creating private or public chat rooms for group discussions. Typing Indicators: Displays when a user is typing to enhance interactivity. Scalability: Built on WebSocket technology with fallback to HTTP long polling, ensuring compatibility across various devices and networks.',
+  //   technologies: ["Node.js", "WebSocket", "Express.js", "render"],
+  //   images: "chat-app.png",
+  //   link: "https://chat-app-c6tq.onrender.com/",
+  // },
   {
     title: "(POS) System for Baby Store",
     description: "Retail management for baby stores.",
     detail:
       "The Baby Store POS system is a comprehensive solution designed to streamline sales, inventory management, and purchase tracking specifically tailored for baby product retail businesses. This system provides an intuitive interface and advanced reporting tools to help store owners efficiently manage daily operations and make informed business decisions.",
-    technologies: ["PHP", "Laravel", "MySQL", "Bootstrap"],
-    image: "pos-system.png",
-    link: "#",
+    technologies: ["PHP", "nginx", "MySQL", "Laravel", "Bootstrap", "EC2"],
+    images: ["pos-system.png", "chat-app.png", "restaurant-pos.png"],
+    link: "https://babystore-pos.duckdns.org/admin/login",
   },
   {
     title: "Money History App",
@@ -41,12 +41,12 @@ const PROJECTS = [
       "React.js",
       "Next.js",
       "Tailwind CSS",
-      "Firebase",
+      "Firebase Authentication",
       "MongoDB",
       "Express.js",
       "vercel",
     ],
-    image: "money-history.jpg",
+    images: ["money-history.jpg"],
     link: "https://money-history-client.vercel.app",
   },
   {
@@ -62,7 +62,7 @@ const PROJECTS = [
       "firebase",
       "vercel",
     ],
-    image: "big-five-app.png",
+    images: ["big-five-app.png"],
     link: "https://big-five-personality-traits.vercel.app/",
   },
   {
@@ -79,7 +79,7 @@ const PROJECTS = [
       "express.js",
       "MongoDB",
     ],
-    image: "money-tracker-app.png",
+    images: ["money-tracker-app.png"],
     link: "https://nuxt-money-tracker.vercel.app/",
   },
   {
@@ -97,7 +97,7 @@ const PROJECTS = [
       "WebSocket",
       "jwt",
     ],
-    image: "restaurant-pos.png",
+    images: ["restaurant-pos.png"],
     link: "https://nuxt-restaurant-system.vercel.app",
   },
   {
@@ -115,7 +115,7 @@ const PROJECTS = [
       "WebSocket",
       "jwt",
     ],
-    image: "chat-room.png",
+    images: ["chat-room.png"],
     link: "https://nuxt-chat-app-three.vercel.app",
   },
 ];
@@ -130,12 +130,16 @@ interface Project {
   description: string;
   detail: string;
   technologies: string[];
-  image: string;
+  images: string[];
   link: string;
 }
 
 export default function Projects() {
   const ref = useRef(null);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fullscreen, setFullscreen] = useState(false);
+  const touchStart = useRef(0);
+
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
   useEffect(() => {
@@ -151,12 +155,33 @@ export default function Projects() {
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
+    setCurrentImage(0);
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
     setTimeout(() => setSelectedProject(null), 250);
+  };
+
+  const nextImage = () => {
+    if (selectedProject) {
+      setCurrentImage((i) => (i + 1) % selectedProject.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject) {
+      setCurrentImage((i) => (i - 1 + selectedProject.images.length) % selectedProject.images.length);
+    }
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => (touchStart.current = e.touches[0].clientX);
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const diff = e.changedTouches[0].clientX - touchStart.current;
+    if (diff > 50) prevImage();
+    if (diff < -50) nextImage();
   };
 
   return (
@@ -197,13 +222,13 @@ export default function Projects() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
               className={
-                `group card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4
+                `group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4
                                        hover:shadow-lg hover:-translate-y-1 transition-all duration-300`
               }
             >
               {/* Image */}
               <Image
-                src={`/projects/${project.image}`}
+                src={`/projects/${project.images[0]}`}
                 alt={project.title}
                 width={500}
                 height={300}
@@ -298,13 +323,60 @@ export default function Projects() {
             </button>
 
             {/* Image */}
-            <Image
+            {/* <Image
               src={`/projects/${selectedProject.image}`}
               alt={selectedProject.title}
               width={600}
               height={300}
               className="rounded-xl object-cover w-full h-48 sm:h-56 md:h-64 mb-4"
-            />
+            /> */}
+
+            {/* IMAGE SLIDER */}
+            <div
+              className="relative mb-6 select-none"
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+            >
+              <motion.div
+                key={currentImage}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.35 }}
+                className="overflow-hidden rounded-xl"
+              >
+                <Image
+                  src={`/projects/${selectedProject.images[currentImage]}`}
+                  width={900}
+                  height={600}
+                  alt="slider-img"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover cursor-pointer"
+                  onClick={() => setFullscreen(true)}
+                />
+              </motion.div>
+
+              {/* Prev/Next Buttons */}
+              <button
+                onClick={(e)=>{e.stopPropagation();prevImage();}}
+                className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
+              >◀</button>
+
+              <button
+                onClick={(e)=>{e.stopPropagation();nextImage();}}
+                className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
+              >▶</button>
+
+              {/* Dots */}
+              <div className="flex justify-center gap-2 mt-3">
+                {selectedProject.images.map((_, i) => (
+                  <div
+                    key={i}
+                    onClick={() => setCurrentImage(i)}
+                    className={`w-3 h-3 rounded-full cursor-pointer transition-all
+                    ${i===currentImage ? "bg-white scale-110" : "bg-gray-400/60"}`}
+                  />
+                ))}
+              </div>
+            </div>
 
             {/* Title */}
             <h3 className="text-2xl font-bold mb-3 text-white">
@@ -345,10 +417,32 @@ export default function Projects() {
                            text-white text-sm font-medium rounded-lg backdrop-blur-md
                            transition-all duration-200 shadow-lg hover:-translate-y-0.5"
               >
-                View Project →
+                Visit Project
               </a>
             )}
           </motion.div>
+          {fullscreen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="fixed inset-0 bg-black/90 z-[300] flex items-center justify-center"
+              onClick={() => setFullscreen(false)}
+            >
+              <motion.img
+                src={`/projects/${selectedProject.images[currentImage]}`}
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+              />
+              <button
+                className="absolute top-6 right-6 text-white text-3xl"
+                onClick={() => setFullscreen(false)}
+              >
+                ✕
+              </button>
+            </motion.div>
+          )}
+
         </motion.div>
       )}
     </motion.section>
