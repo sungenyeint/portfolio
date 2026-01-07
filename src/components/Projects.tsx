@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import ProjectModal from "./ProjectModal";
 
 const PROJECTS = [
   // {
@@ -29,25 +30,8 @@ const PROJECTS = [
     detail:
       "The Baby Store POS system is a comprehensive solution designed to streamline sales, inventory management, and purchase tracking specifically tailored for baby product retail businesses. This system provides an intuitive interface and advanced reporting tools to help store owners efficiently manage daily operations and make informed business decisions.",
     technologies: ["PHP", "nginx", "MySQL", "Laravel", "Bootstrap", "EC2"],
-    images: ["pos-system.png", "chat-app.png", "restaurant-pos.png"],
+    images: ["pos.png", "pos1.png", "pos2.png", "pos3.png", "pos4.png", "pos5.png"],
     link: "https://babystore-pos.duckdns.org/admin/login",
-  },
-  {
-    title: "Money History App",
-    description: "Track your finances",
-    detail:
-      "The Money History Dashboard is a modern, responsive web application that helps users track and visualize their income and expenses in one place. 🔎 Key Features: 📊 Interactive income & expense charts 🗂 Categorized transaction history 🔐 Secure login via Google or Facebook (Firebase Auth)",
-    technologies: [
-      "React.js",
-      "Next.js",
-      "Tailwind CSS",
-      "Firebase Authentication",
-      "MongoDB",
-      "Express.js",
-      "vercel",
-    ],
-    images: ["money-history.jpg"],
-    link: "https://money-history-client.vercel.app",
   },
   {
     title: "Big Five Personality Traits",
@@ -62,43 +46,8 @@ const PROJECTS = [
       "firebase",
       "vercel",
     ],
-    images: ["big-five-app.png"],
+    images: ["bfp1.png", "bfp2.png", "bfp3.png", "bfp4.png", "bfp5.png"],
     link: "https://big-five-personality-traits.vercel.app/",
-  },
-  {
-    title: "Money Tracker app",
-    description: "Track your income and expenses effortlessly",
-    detail:
-      "The Nuxt Money Tracker is a modern and responsive finance management app that helps users track and visualize their daily income and expenses. 🔎 Key Features: 📊 Interactive charts to analyze financial trends 🗂 Categorized transaction tracking with clean UI 💰 Budget overview and spending insights 📁 Multiple wallets support (cash, bank, card) 📱 Fully responsive and lightweight design",
-    technologies: [
-      "vue.js",
-      "Nuxt.js",
-      "Tailwind CSS",
-      "Firebase authentication",
-      "vercel",
-      "express.js",
-      "MongoDB",
-    ],
-    images: ["money-tracker-app.png"],
-    link: "https://nuxt-money-tracker.vercel.app/",
-  },
-  {
-    title: "Restaurant POS System",
-    description: "Manage orders and inventory efficiently",
-    detail:
-      "The Restaurant POS System is a comprehensive solution designed to streamline order management, inventory tracking, and sales reporting for restaurants. This system provides an intuitive interface for staff to take orders, process payments, and manage tables, while also offering robust backend features for inventory control and analytics.",
-    technologies: [
-      "vue.js",
-      "Nuxt.js",
-      "Tailwind CSS",
-      "vercel",
-      "express.js",
-      "MongoDB",
-      "WebSocket",
-      "jwt",
-    ],
-    images: ["restaurant-pos.png"],
-    link: "https://nuxt-restaurant-system.vercel.app",
   },
   {
     title: "Chat Room App",
@@ -115,8 +64,61 @@ const PROJECTS = [
       "WebSocket",
       "jwt",
     ],
-    images: ["chat-room.png"],
+    images: ["capp0.png", "capp1.png", "capp2.png", "capp3.png", "capp4.png", "capp5.png", "capp6.png", "capp7.png"],
     link: "https://nuxt-chat-app-three.vercel.app",
+  },
+  {
+    title: "Money Tracker app",
+    description: "Track your income and expenses effortlessly",
+    detail:
+      "The Nuxt Money Tracker is a modern and responsive finance management app that helps users track and visualize their daily income and expenses. 🔎 Key Features: 📊 Interactive charts to analyze financial trends 🗂 Categorized transaction tracking with clean UI 💰 Budget overview and spending insights 📁 Multiple wallets support (cash, bank, card) 📱 Fully responsive and lightweight design",
+    technologies: [
+      "vue.js",
+      "Nuxt.js",
+      "Tailwind CSS",
+      "Firebase authentication",
+      "vercel",
+      "express.js",
+      "MongoDB",
+    ],
+    images: ["money-tracker-app.png", "mt0.png", "mt1.png", "mt2.png", "mt3.png", "mt4.png", "mt5.png", "mt6.png", "mt7.png"],
+    link: "https://nuxt-money-tracker.vercel.app/",
+  },
+  {
+    title: "Restaurant POS System",
+    description: "Manage orders and inventory efficiently",
+    detail:
+      "The Restaurant POS System is a comprehensive solution designed to streamline order management, inventory tracking, and sales reporting for restaurants. This system provides an intuitive interface for staff to take orders, process payments, and manage tables, while also offering robust backend features for inventory control and analytics.",
+    technologies: [
+      "vue.js",
+      "Nuxt.js",
+      "Tailwind CSS",
+      "vercel",
+      "render",
+      "express.js",
+      "MongoDB",
+      "WebSocket",
+      "jwt",
+    ],
+    images: ["rpos2.png", "rpos1.png", "rpos2.png", "rpos3.png", "rpos4.png", "rpos5.png", "rpos6.png", "rpos7.png"],
+    link: "https://nuxt-restaurant-system.vercel.app",
+  },
+  {
+    title: "Money History App",
+    description: "Track your finances",
+    detail:
+      "The Money History Dashboard is a modern, responsive web application that helps users track and visualize their income and expenses in one place. 🔎 Key Features: 📊 Interactive income & expense charts 🗂 Categorized transaction history 🔐 Secure login via Google or Facebook (Firebase Auth)",
+    technologies: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "Firebase Authentication",
+      "MongoDB",
+      "Express.js",
+      "vercel",
+    ],
+    images: ["mh2.jpg", "mh1.jpg", "mh3.jpg", "mh4.jpg", "mh5.jpg", "mh6.jpg"],
+    link: "https://money-history-client.vercel.app",
   },
 ];
 
@@ -136,10 +138,6 @@ interface Project {
 
 export default function Projects() {
   const ref = useRef(null);
-  const [currentImage, setCurrentImage] = useState(0);
-  const [fullscreen, setFullscreen] = useState(false);
-  const touchStart = useRef(0);
-
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
   useEffect(() => {
@@ -147,42 +145,10 @@ export default function Projects() {
       controls.start({ opacity: 1, y: 0 });
     }
   }, [inView, controls]);
-  const [modalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, 3);
-
-  const openModal = (project: Project) => {
-    setSelectedProject(project);
-    setCurrentImage(0);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setTimeout(() => setSelectedProject(null), 250);
-  };
-
-  const nextImage = () => {
-    if (selectedProject) {
-      setCurrentImage((i) => (i + 1) % selectedProject.images.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedProject) {
-      setCurrentImage((i) => (i - 1 + selectedProject.images.length) % selectedProject.images.length);
-    }
-  };
-
-  const onTouchStart = (e: React.TouchEvent) => (touchStart.current = e.touches[0].clientX);
-
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const diff = e.changedTouches[0].clientX - touchStart.current;
-    if (diff > 50) prevImage();
-    if (diff < -50) nextImage();
-  };
 
   return (
     <motion.section
@@ -227,13 +193,16 @@ export default function Projects() {
               }
             >
               {/* Image */}
-              <Image
-                src={`/projects/${project.images[0]}`}
-                alt={project.title}
-                width={500}
-                height={300}
-                className="rounded-lg object-cover h-40 w-full group-hover:opacity-95 transition duration-300"
-              />
+              <div className="relative w-full h-40 rounded-lg overflow-hidden">
+                <Image
+                  src={`/projects/${project.images[0]}`}
+                  alt={project.title}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover group-hover:opacity-95 transition duration-300"
+                  priority={idx < 3}
+                />
+              </div>
 
               {/* Title */}
               <h3 className="text-xl font-semibold mt-4 text-gray-900 dark:text-gray-100">
@@ -260,10 +229,10 @@ export default function Projects() {
 
               {/* View link */}
               <button
-                onClick={() => openModal(project)}
+                onClick={() => setSelectedProject(project)}
                 className="mt-6 inline-flex items-center justify-center w-full py-2.5 rounded-lg
                                            bg-blue-600 text-white text-sm font-semibold
-                                           hover:bg-blue-700 transition-all duration-300 hover:-translate-y-0.5"
+                                           hover:bg-blue-700 transition-all duration-300 hover:cursor-pointer"
               >
                 View Detail
               </button>
@@ -284,167 +253,12 @@ export default function Projects() {
           </div>
         )}
       </div>
-      {/* Glassmorphism Modal */}
-      {modalOpen && selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[200]"
-          onClick={closeModal}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.85, y: 10 }}
-            transition={{ duration: 0.25 }}
-            className="
-                relative
-                bg-white/10 dark:bg-neutral-900/20
-                backdrop-blur-xl
-                border border-white/20
-                shadow-2xl
-                rounded-2xl
-                p-12
-                w-[100%]
-                max-w-3xl
-                text-white
-              "
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-2 right-2 bg-white/20 hover:bg-white/30
-                           backdrop-blur-md text-white rounded-full w-9 h-9 flex
-                           items-center justify-center transition"
-            >
-              ✕
-            </button>
-
-            {/* Image */}
-            {/* <Image
-              src={`/projects/${selectedProject.image}`}
-              alt={selectedProject.title}
-              width={600}
-              height={300}
-              className="rounded-xl object-cover w-full h-48 sm:h-56 md:h-64 mb-4"
-            /> */}
-
-            {/* IMAGE SLIDER */}
-            <div
-              className="relative mb-6 select-none"
-              onTouchStart={onTouchStart}
-              onTouchEnd={onTouchEnd}
-            >
-              <motion.div
-                key={currentImage}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.35 }}
-                className="overflow-hidden rounded-xl"
-              >
-                <Image
-                  src={`/projects/${selectedProject.images[currentImage]}`}
-                  width={900}
-                  height={600}
-                  alt="slider-img"
-                  className="w-full h-48 sm:h-56 md:h-64 object-cover cursor-pointer"
-                  onClick={() => setFullscreen(true)}
-                />
-              </motion.div>
-
-              {/* Prev/Next Buttons */}
-              <button
-                onClick={(e)=>{e.stopPropagation();prevImage();}}
-                className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
-              >◀</button>
-
-              <button
-                onClick={(e)=>{e.stopPropagation();nextImage();}}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
-              >▶</button>
-
-              {/* Dots */}
-              <div className="flex justify-center gap-2 mt-3">
-                {selectedProject.images.map((_, i) => (
-                  <div
-                    key={i}
-                    onClick={() => setCurrentImage(i)}
-                    className={`w-3 h-3 rounded-full cursor-pointer transition-all
-                    ${i===currentImage ? "bg-white scale-110" : "bg-gray-400/60"}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Title */}
-            <h3 className="text-2xl font-bold mb-3 text-white">
-              {selectedProject.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-200 mb-4 leading-relaxed">
-              {selectedProject.description}
-            </p>
-
-            {/* Detail */}
-            {selectedProject.detail && (
-              <p className="text-gray-300 mb-6 leading-relaxed text-sm">
-                {selectedProject.detail}
-              </p>
-            )}
-
-            {/* Tech */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {selectedProject.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-1 bg-white/20 border border-white/30 rounded-full
-                             text-xs text-white backdrop-blur-md"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {/* External Link */}
-            {selectedProject.link && (
-              <a
-                href={selectedProject.link}
-                target="_blank"
-                className="inline-block mt-2 px-4 py-2 bg-blue-600/80 hover:bg-blue-600
-                           text-white text-sm font-medium rounded-lg backdrop-blur-md
-                           transition-all duration-200 shadow-lg hover:-translate-y-0.5"
-              >
-                Visit Project
-              </a>
-            )}
-          </motion.div>
-          {fullscreen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="fixed inset-0 bg-black/90 z-[300] flex items-center justify-center"
-              onClick={() => setFullscreen(false)}
-            >
-              <motion.img
-                src={`/projects/${selectedProject.images[currentImage]}`}
-                className="max-w-[90vw] max-h-[90vh] object-contain rounded-xl"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-              />
-              <button
-                className="absolute top-6 right-6 text-white text-3xl"
-                onClick={() => setFullscreen(false)}
-              >
-                ✕
-              </button>
-            </motion.div>
-          )}
-
-        </motion.div>
-      )}
+      {/* Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </motion.section>
   );
 }
