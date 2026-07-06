@@ -15,6 +15,7 @@ export default function HeroSection() {
             transition={{ duration: 1.5, ease: "easeOut" }}
         >
             <div className="text-center md:text-right md:mr-8">
+                <h1>hello</h1>
                 <h2 className="text-xl font-semibold tracking-wide text-gray-700 dark:text-gray-200 mb-2">Hi, I&apos;m MEE PONT</h2>
                 <h1 className="text-3xl md:text-6xl font-extrabold text-gray-900 dark:text-white">WEB DEVELOPER</h1>
                 <div className="flex justify-center md:justify-end gap-4 mt-4">
