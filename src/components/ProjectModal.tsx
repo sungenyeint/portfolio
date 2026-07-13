@@ -47,7 +47,7 @@ export default function ProjectModal({
     if (!project) return;
     setDirection(-1);
     setCurrentImage(
-      (i) => (i - 1 + project.images.length) % project.images.length
+      (i) => (i - 1 + project.images.length) % project.images.length,
     );
   }, [project]);
 
@@ -56,7 +56,7 @@ export default function ProjectModal({
       setDirection(index > currentImage ? 1 : -1);
       setCurrentImage(index);
     },
-    [currentImage]
+    [currentImage],
   );
 
   /* ---------------- ACCESSIBILITY ---------------- */
@@ -107,7 +107,7 @@ export default function ProjectModal({
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
+    info: PanInfo,
   ) => {
     const swipe = info.offset.x * info.velocity.x;
 
